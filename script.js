@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
        4. Copy your Template ID and Public Key
        5. Replace the three placeholder strings below with your real values
        ============================================================ */
-    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
-    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
-    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // e.g. 'aBcDeFgHiJkLmNoP'
+    const EMAILJS_SERVICE_ID  = 'service_52dileb';   // e.g. 'service_abc123'
+    const EMAILJS_TEMPLATE_ID = 'template_jmsfo6i';  // e.g. 'template_xyz789'
+    const EMAILJS_PUBLIC_KEY  = 'tmOdPy3aAWo9Wuphh';   // e.g. 'aBcDeFgHiJkLmNoP'
 
     // Initialise EmailJS with your public key
     if (typeof emailjs !== 'undefined') {
@@ -216,9 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 // ✅ FIXED: Guard now correctly checks for PLACEHOLDER values,
                 // not your real credentials
                 if (
-                    EMAILJS_SERVICE_ID  === 'service_pac5ea9'  ||
-                    EMAILJS_TEMPLATE_ID === 'template_li69qhg' ||
-                    EMAILJS_PUBLIC_KEY  === 'tmOdPy3aAWo9Wuphh'
+                    EMAILJS_SERVICE_ID  === ''  ||
+                    EMAILJS_TEMPLATE_ID === '' ||
+                    EMAILJS_PUBLIC_KEY  === ''
                 ) {
                     throw new Error('EmailJS is not configured yet. Please add your Service ID, Template ID, and Public Key in script.js.');
                 }
