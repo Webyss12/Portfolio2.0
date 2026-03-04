@@ -141,6 +141,7 @@ nav a:nth-child(2) { animation-delay: 0.18s; }
 nav a:nth-child(3) { animation-delay: 0.26s; }
 nav a:nth-child(4) { animation-delay: 0.34s; }
 nav a:nth-child(5) { animation-delay: 0.42s; }
+nav a:nth-child(6) { animation-delay: 0.50s; }
 
 nav a:hover,
 nav a.active {
@@ -349,6 +350,7 @@ section {
     position: relative;
     z-index: 2;
     background-color: var(--bg-mid);
+    padding: 1px;
 }
 
 .home-image img:hover {
@@ -1191,6 +1193,171 @@ footer span {
 ::selection { background: rgba(196, 154, 90, 0.25); color: var(--text-primary); }
 
 /* ============================================================
+   TOOLS & LANGUAGES SECTION
+   ============================================================ */
+
+.tools-langs {
+    background: var(--bg-mid);
+    flex-direction: column;
+    padding: var(--section-pad-v) var(--section-pad-h);
+    position: relative;
+    min-height: unset;
+}
+
+.tools-langs::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, transparent 12%, transparent 88%, var(--bg-dark) 100%);
+    pointer-events: none;
+}
+
+.tools-langs-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Column label — same style as edu-block-label */
+.tl-column-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+    opacity: 0.85;
+}
+
+.tl-column-label i { font-size: 1.8rem; }
+
+/* Cards grid inside each column */
+.tl-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 1.4vw, 1.4rem);
+}
+
+/* Individual card */
+.tl-card {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 2vw, 2rem);
+    padding: clamp(1.3rem, 1.8vw, 1.8rem) clamp(1.5rem, 2.2vw, 2.2rem);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    transition: all 0.3s var(--ease-out-expo);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer line on hover */
+.tl-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-dark), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out-expo);
+}
+
+.tl-card:hover {
+    border-color: var(--border-hover);
+    transform: translateX(6px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.tl-card:hover::after { transform: scaleX(1); }
+
+/* Scroll-reveal */
+.tl-card.show { animation: fadeInUp 0.5s var(--ease-out-expo) forwards; }
+
+/* Icon container — colored accent per tech */
+.tl-card-icon {
+    font-size: clamp(2.2rem, 2.8vw, 2.8rem);
+    width: clamp(4rem, 5vw, 5rem);
+    height: clamp(4rem, 5vw, 5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.9rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    background: rgba(196, 154, 90, 0.07);
+}
+
+.tl-card:hover .tl-card-icon { transform: scale(1.12); }
+
+/* Per-tech icon colours */
+.html-color    { color: #e34f26; background: rgba(227,79,38,0.1); }
+.css-color     { color: #2965f1; background: rgba(41,101,241,0.1); }
+.js-color      { color: #f7df1e; background: rgba(247,223,30,0.1); }
+.python-color  { color: #3572a5; background: rgba(53,114,165,0.1); }
+.java-color    { color: #b07219; background: rgba(176,114,25,0.1); }
+.csharp-color  { color: #9b4f96; background: rgba(155,79,150,0.1); }
+
+.vscode-color   { color: #007acc; background: rgba(0,122,204,0.1); }
+.intellij-color { color: #fe315d; background: rgba(254,49,93,0.1); }
+.git-color      { color: #f05032; background: rgba(240,80,50,0.1); }
+.github-color   { color: #e8e9ba; background: rgba(232,233,186,0.07); }
+.figma-color    { color: #a259ff; background: rgba(162,89,255,0.1); }
+.node-color     { color: #68a063; background: rgba(104,160,99,0.1); }
+
+/* Text info */
+.tl-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.tl-card-info h4 {
+    font-size: clamp(1.35rem, 1.55vw, 1.55rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.tl-card-info span {
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+}
+
+/* Level / role badge */
+.tl-badge {
+    flex-shrink: 0;
+    padding: 0.35rem 1.1rem;
+    border-radius: 10rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+    letter-spacing: 0.07em;
+    border: 1px solid rgba(196, 154, 90, 0.3);
+    color: var(--primary-light);
+    background: rgba(196, 154, 90, 0.07);
+    white-space: nowrap;
+}
+
+.tl-badge--tool {
+    border-color: rgba(181, 201, 154, 0.3);
+    color: var(--accent);
+    background: rgba(181, 201, 154, 0.07);
+}
+
+/* ============================================================
    RESPONSIVE BREAKPOINTS
    ============================================================ */
 
@@ -1216,7 +1383,8 @@ footer span {
 
 /* ---- Small Desktop / Large Tablet: 1100–1199px ---- */
 @media (max-width: 1100px) {
-    .education-container {
+    .education-container,
+    .tools-langs-wrapper {
         grid-template-columns: 1fr;
         gap: 4rem;
     }
@@ -1243,14 +1411,12 @@ footer span {
         align-items: stretch;
         overflow-y: auto;
         transition: right 0.45s var(--ease-out-expo);
-        /* Override animation-based opacity for mobile nav items */
     }
 
     nav.active {
         right: 0;
     }
 
-    /* Overlay behind open nav */
     nav.active::before {
         content: '';
         position: fixed;
@@ -1299,7 +1465,6 @@ footer span {
         grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     }
 
-    /* On touch devices, disable dimming effect that needs hover */
     @media (hover: none) {
         .skills-container:hover .skill-box {
             opacity: 1;
@@ -1421,7 +1586,6 @@ footer span {
 
 /* ============================================================
    LIGHT THEME OVERRIDES
-   Applied when <html data-theme="light">
    ============================================================ */
 
 [data-theme="light"] {
@@ -1436,28 +1600,25 @@ footer span {
     --border-hover:   rgba(140, 100, 40, 0.4);
 }
 
-/* Adjust grain overlay opacity in light mode */
 [data-theme="light"] body::after {
     opacity: 0.15;
 }
 
-/* Header bg in light mode */
 [data-theme="light"] header {
     background: rgba(245, 244, 238, 0.92);
 }
 
-/* Typing text cursor bg */
 [data-theme="light"] .typing-text span::after {
     background-color: var(--bg-dark);
 }
 
-/* Smooth theme transition on key elements */
 body,
 header,
 .service-box,
 .skill-box,
 .edu-card,
 .cert-card,
+.tl-card,
 .contact-item,
 .form-group input,
 .form-group textarea,
@@ -1471,7 +1632,7 @@ header,
 
 
 /* ============================================================
-   THEME TOGGLE BUTTON (inside nav)
+   THEME TOGGLE BUTTON
    ============================================================ */
 
 .theme-toggle {
@@ -1498,7 +1659,6 @@ header,
     transform: rotate(15deg);
 }
 
-/* On mobile the toggle sits as its own row inside the drawer */
 @media (max-width: 995px) {
     .theme-toggle {
         width: 100%;
@@ -1544,7 +1704,6 @@ header,
     z-index: 999;
     box-shadow: 0 8px 24px rgba(196, 154, 90, 0.35);
 
-    /* Hidden by default */
     opacity: 0;
     transform: translateY(16px);
     pointer-events: none;

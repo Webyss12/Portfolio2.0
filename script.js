@@ -2,23 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ============================================================
        EMAILJS CONFIGURATION
-       ─────────────────────────────────────────────────────────────
-       HOW TO SET UP:
-       1. Go to https://www.emailjs.com and create a free account
-       2. Add an Email Service (Gmail recommended) → copy your Service ID
-       3. Create an Email Template — use these variables in the template:
-            {{from_name}}   — sender's name
-            {{from_email}}  — sender's email
-            {{subject}}     — message subject
-            {{message}}     — message body
-       4. Copy your Template ID and Public Key
-       5. Replace the three placeholder strings below with your real values
        ============================================================ */
-    const EMAILJS_SERVICE_ID  = 'service_52dileb';   // e.g. 'service_abc123'
-    const EMAILJS_TEMPLATE_ID = 'template_jmsfo6i';  // e.g. 'template_xyz789'
-    const EMAILJS_PUBLIC_KEY  = 'tmOdPy3aAWo9Wuphh';   // e.g. 'aBcDeFgHiJkLmNoP'
+    const EMAILJS_SERVICE_ID  = 'service_52dileb';
+    const EMAILJS_TEMPLATE_ID = 'template_jmsfo6i';
+    const EMAILJS_PUBLIC_KEY  = 'tmOdPy3aAWo9Wuphh';
 
-    // Initialise EmailJS with your public key
     if (typeof emailjs !== 'undefined') {
         emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
     }
@@ -38,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeIcon   = document.getElementById('themeIcon');
     const html        = document.documentElement;
 
-    // Load saved preference (defaults to dark)
     const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
 
@@ -99,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ============================================================
-       SMOOTH SCROLL  (accounts for fixed header height)
+       SMOOTH SCROLL
        ============================================================ */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
@@ -160,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelectorAll(
-        '.service-box, .skill-box, .edu-card, .cert-card'
+        '.service-box, .skill-box, .edu-card, .cert-card, .tl-card'
     ).forEach(el => revealObserver.observe(el));
 
 
@@ -170,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const backToTop = document.getElementById('backToTop');
 
     if (backToTop) {
-        // Show button after scrolling 400px
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('visible', window.scrollY > 400);
         }, { passive: true });
@@ -181,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-/* ============================================================
+    /* ============================================================
        CONTACT FORM  —  EmailJS
        ============================================================ */
     const contactForm = document.getElementById('contactForm');
@@ -192,19 +178,16 @@ document.addEventListener("DOMContentLoaded", () => {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Basic client-side validation
             if (!contactForm.checkValidity()) {
                 contactForm.reportValidity();
                 return;
             }
 
-            // Show loading state
             const originalHTML = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin" aria-hidden="true"></i> Sending...';
             setStatus('', '');
 
-            // Build template params matching your EmailJS template variables
             const templateParams = {
                 from_name:  contactForm.querySelector('#name').value.trim(),
                 from_email: contactForm.querySelector('#email').value.trim(),
@@ -213,8 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             try {
-                // ✅ FIXED: Guard now correctly checks for PLACEHOLDER values,
-                // not your real credentials
                 if (
                     EMAILJS_SERVICE_ID  === ''  ||
                     EMAILJS_TEMPLATE_ID === '' ||
