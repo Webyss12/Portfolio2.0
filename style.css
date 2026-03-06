@@ -1736,7 +1736,6 @@ header,
 /* ============================================================
    FORM STATUS MESSAGE
    ============================================================ */
-
 .form-status {
     display: none;
     padding: 1.4rem 2rem;
@@ -1761,18 +1760,50 @@ header,
     color: #e08080;
 }
 
-
 /* ============================================================
-   for shark cursor 
+   SPIDER CANVAS + STACKING
    ============================================================ */
-
-html, body { height: 100%; width: 100%; margin: 0;}
-#whale {
+#canvas {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
     pointer-events: none;
 }
+
+section {
+    min-height: 100vh;
+    padding: var(--section-pad-v) var(--section-pad-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+    margin: 0;
+}
+
+footer {
+    position: relative;
+    z-index: 3;
+    background: rgba(22, 20, 16, 0.88);
+}
+
+/* Section backgrounds — rgba so spider shows through */
+.home        { background: rgba(15, 14, 9, 0.88); }
+.services    { background: rgba(22, 20, 16, 0.88); }
+.skills      { background: rgba(15, 14, 9, 0.88); }
+.tools-langs { background: rgba(22, 20, 16, 0.88); }
+.education   { background: rgba(22, 20, 16, 0.88); }
+.contact     { background: rgba(15, 14, 9, 0.88); }
+
+/* Light theme section backgrounds */
+[data-theme="light"] .home        { background: rgba(245, 244, 238, 0.88); }
+[data-theme="light"] .services    { background: rgba(236, 234, 224, 0.88); }
+[data-theme="light"] .skills      { background: rgba(245, 244, 238, 0.88); }
+[data-theme="light"] .tools-langs { background: rgba(236, 234, 224, 0.88); }
+[data-theme="light"] .education   { background: rgba(236, 234, 224, 0.88); }
+[data-theme="light"] .contact     { background: rgba(245, 244, 238, 0.88); }
+[data-theme="light"] footer       { background: rgba(236, 234, 224, 0.88); }
+
