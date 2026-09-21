@@ -1,75 +1,47 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    /* ============================================================
-       EMAILJS CONFIGURATION
-       ============================================================ */
+    /* EmailJS config */
     const EMAILJS_SERVICE_ID  = 'service_52dileb';
     const EMAILJS_TEMPLATE_ID = 'template_jmsfo6i';
     const EMAILJS_PUBLIC_KEY  = 'tmOdPy3aAWo9Wuphh';
 
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
+    if (typeof emailjs !== 'undefined') emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
-
-    /* ============================================================
-       DYNAMIC YEAR IN FOOTER
-       ============================================================ */
+    /* Footer year */
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-
-    /* ============================================================
-       DARK / LIGHT THEME TOGGLE
-       ============================================================ */
+    /* Theme toggle */
+    const html = document.documentElement;
     const themeToggle = document.getElementById('themeToggle');
-    const themeIcon   = document.getElementById('themeIcon');
-    const html        = document.documentElement;
+    applyTheme(localStorage.getItem('theme') || 'dark');
 
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(savedTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const current = html.getAttribute('data-theme');
-            applyTheme(current === 'dark' ? 'light' : 'dark');
-        });
-    }
+    themeToggle?.addEventListener('click', () => {
+        applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
 
     function applyTheme(theme) {
         html.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        if (themeIcon) {
-            themeIcon.className = theme === 'dark' ? 'bx bx-moon' : 'bx bx-sun';
-        }
     }
 
-
-    /* ============================================================
-       HAMBURGER MENU
-       ============================================================ */
+    /* Mobile nav */
     const menuToggle = document.getElementById('menuToggle');
-    const mainNav    = document.getElementById('mainNav');
+    const mainNav = document.getElementById('mainNav');
 
     if (menuToggle && mainNav) {
-
         menuToggle.addEventListener('click', () => {
-            const isOpen = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('open', isOpen);
-            menuToggle.setAttribute('aria-expanded', isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+            const open = mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('open', open);
+            menuToggle.setAttribute('aria-expanded', open);
+            document.body.style.overflow = open ? 'hidden' : '';
         });
 
-        mainNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeNav);
-        });
+        mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 
         document.addEventListener('click', (e) => {
-            if (
-                mainNav.classList.contains('active') &&
-                !mainNav.contains(e.target) &&
-                !menuToggle.contains(e.target)
-            ) closeNav();
+            if (mainNav.classList.contains('active') &&
+                !mainNav.contains(e.target) && !menuToggle.contains(e.target)) closeNav();
         });
 
         document.addEventListener('keydown', (e) => {
@@ -84,145 +56,70 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-    /* ============================================================
-       SMOOTH SCROLL
-       ============================================================ */
+    /* Smooth scroll offset for sticky header */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const target = document.querySelector(targetId);
+            const id = this.getAttribute('href');
+            if (id === '#') return;
+            const target = document.querySelector(id);
             if (!target) return;
-
             e.preventDefault();
-
-            const headerHeight = document.querySelector('header')?.offsetHeight ?? 0;
-            const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
+            const headerH = document.querySelector('header')?.offsetHeight ?? 0;
+            const top = target.getBoundingClientRect().top + window.scrollY - headerH;
             window.scrollTo({ top, behavior: 'smooth' });
         });
     });
 
-
-    /* ============================================================
-       ACTIVE NAV LINK ON SCROLL
-       ============================================================ */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-    const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.toggle(
-                        'active',
-                        link.getAttribute('href') === `#${entry.target.id}`
-                    );
-                });
-            }
-        });
-    }, {
-        threshold: 0,
-        rootMargin: '-40% 0px -55% 0px'
-    });
-
-    sections.forEach(sec => navObserver.observe(sec));
-
-
-    /* ============================================================
-       SCROLL-REVEAL FOR CARDS
-       ============================================================ */
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -80px 0px'
-    });
-
-    document.querySelectorAll(
-        '.service-box, .skill-box, .edu-card, .cert-card, .tl-card'
-    ).forEach(el => revealObserver.observe(el));
-
-
-    /* ============================================================
-       BACK TO TOP BUTTON
-       ============================================================ */
+    /* Back to top */
     const backToTop = document.getElementById('backToTop');
-
     if (backToTop) {
         window.addEventListener('scroll', () => {
             backToTop.classList.toggle('visible', window.scrollY > 400);
         }, { passive: true });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
+    /* Contact form */
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
 
-    /* ============================================================
-       CONTACT FORM  —  EmailJS
-       ============================================================ */
-    const contactForm = document.getElementById('contactForm');
-    const formStatus  = document.getElementById('formStatus');
-    const submitBtn   = document.getElementById('submitBtn');
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        setStatus('', '');
 
-            if (!contactForm.checkValidity()) {
-                contactForm.reportValidity();
-                return;
+        const params = {
+            from_name:  form.querySelector('#name').value.trim(),
+            from_email: form.querySelector('#email').value.trim(),
+            subject:    'New message from portfolio contact form',
+            message:    form.querySelector('#message').value.trim(),
+        };
+
+        try {
+            if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+                throw new Error('EmailJS is not configured yet.');
             }
-
-            const originalHTML = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin" aria-hidden="true"></i> Sending...';
-            setStatus('', '');
-
-            const templateParams = {
-                from_name:  contactForm.querySelector('#name').value.trim(),
-                from_email: contactForm.querySelector('#email').value.trim(),
-                subject:    contactForm.querySelector('#subject').value.trim(),
-                message:    contactForm.querySelector('#message').value.trim(),
-            };
-
-            try {
-                if (
-                    EMAILJS_SERVICE_ID  === ''  ||
-                    EMAILJS_TEMPLATE_ID === '' ||
-                    EMAILJS_PUBLIC_KEY  === ''
-                ) {
-                    throw new Error('EmailJS is not configured yet. Please add your Service ID, Template ID, and Public Key in script.js.');
-                }
-
-                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-
-                setStatus('success', '✓ Message sent! I\'ll get back to you within 24 hours.');
-                contactForm.reset();
-
-            } catch (err) {
-                console.error('EmailJS error:', err);
-                setStatus('error', '✗ ' + (err.message || 'Something went wrong. Please try again or email me directly.'));
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalHTML;
-            }
-        });
-    }
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+            setStatus('success', "Message sent — I'll get back to you within 24 hours.");
+            form.reset();
+        } catch (err) {
+            console.error('EmailJS error:', err);
+            setStatus('error', err.message || 'Something went wrong. Please email me directly.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
 
     function setStatus(type, message) {
-        if (!formStatus) return;
-        formStatus.className = 'form-status' + (type ? ` ${type}` : '');
-        formStatus.textContent = message;
+        if (!status) return;
+        status.className = 'form-status' + (type ? ` ${type}` : '');
+        status.textContent = message;
     }
 
 });

@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chito-san — BSIT Student & Frontend Developer. Portfolio showcasing web development, UI/UX design, and mobile app projects.">
-    <meta name="theme-color" content="#0f0e09">
+    <meta name="description" content="Chito-san — Frontend Developer & BSIT Student based in Cebu, Philippines. Portfolio of web and embedded-systems projects.">
+    <meta name="theme-color" content="#0a0a0a">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Chito-san | Portfolio">
-    <meta property="og:description" content="BSIT Student & Frontend Developer based in Cebu, Philippines.">
+    <meta property="og:description" content="Frontend Developer & BSIT Student based in Cebu, Philippines.">
     <meta property="og:type" content="website">
 
     <title>Chito-san | Portfolio</title>
     <link rel="icon" href="./img/favicon.png" type="image/png">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Boxicons -->
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <!-- EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -26,9 +26,6 @@
 </head>
 
 <body>
-
-    <!-- Spider background canvas -->
-    <canvas id="canvas"></canvas>
 
     <!-- ===== HEADER ===== -->
     <header>
@@ -41,503 +38,236 @@
         </button>
 
         <nav id="mainNav" role="navigation" aria-label="Main navigation">
-            <a href="#home" class="active">Home</a>
-            <a href="#services">Services</a>
-            <a href="#skills">Skills</a>
-            <a href="#tools">Tools</a>
+            <a href="#work">Work</a>
+            <a href="#stack">Stack</a>
             <a href="#education">Education</a>
-            <a href="#contacts">Contacts</a>
+            <a href="#contact">Contact</a>
 
-            <!-- Dark / Light toggle -->
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                <i class="bx bx-moon" id="themeIcon" aria-hidden="true"></i>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2"/>
+                    <path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/>
+                </svg>
             </button>
         </nav>
     </header>
 
-    <!-- ===== HOME ===== -->
-    <section class="home" id="home">
-
-        <div class="home-image">
-            <img src="./img/prof_.jpg" alt="Chito — profile photo" loading="eager">
-        </div>
-
-        <div class="home-content">
-            <h1>Hi, It's <span>Chito-san</span></h1>
-            <p class="typing-text">I'm a <span></span></p>
-           <p>Currently pursuing a Bachelor of Science in Information
-                    Technology at Cebu Technological University — Ginatilan
-                        Extension Campus. Focused on frontend development, UI/UX
-                        design, and continuously learning new technologies to
-                         build impactful digital solutions.</p>
-
-            <div class="social-icons">
-                <a href="https://www.instagram.com/yab0ywill/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                </a>
-                <a href="https://github.com/Webyss12" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                </a>
-            </div>
-
-            <a href="mailto:quinanolarichitojr@gmail.com" class="btn">Hire Me</a>
-        </div>
-
-    </section>
-
-    <!-- ===== SERVICES ===== -->
-    <section class="services" id="services">
-
-        <div class="section-header">
-            <p>What I Offer</p>
-            <h2 class="section-title">My <strong>Services</strong></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="services-container">
-
-            <div class="service-box" data-index="01">
-                <i class="fa-solid fa-code service-icon" aria-hidden="true"></i>
-                <h3>Web Development</h3>
-                <p>Creating responsive and dynamic websites using modern web technologies like HTML, CSS, and JavaScript.</p>
-            </div>
-
-            <div class="service-box" data-index="02">
-                <i class="fa-solid fa-paint-brush service-icon" aria-hidden="true"></i>
-                <h3>UI/UX Design</h3>
-                <p>Designing user-friendly interfaces and enhancing user experience with clean, intuitive layouts.</p>
-            </div>
-
-            <div class="service-box" data-index="03">
-                <i class="fa-solid fa-mobile-screen service-icon" aria-hidden="true"></i>
-                <h3>Mobile App Development</h3>
-                <p>Building cross-platform mobile applications for Android and iOS using modern frameworks.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="skills" id="skills">
-
-        <div class="section-header">
-            <p>What I Know</p>
-            <h2 class="section-title">My <strong>Skills</strong></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="skills-container">
-
-            <div class="skill-box">
-                <i class="fa-brands fa-html5 skill-icon" aria-hidden="true"></i>
-                <h3>HTML</h3>
-                <div class="skill-desc">
-                    <p>Proficient in writing clean, semantic HTML5 markup — with accessibility and SEO best practices in mind.</p>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <i class="fa-brands fa-css3-alt skill-icon" aria-hidden="true"></i>
-                <h3>CSS</h3>
-                <div class="skill-desc">
-                    <p>Skilled in responsive layouts using Flexbox and Grid, with animations and custom styling for polished UIs.</p>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <i class="fa-brands fa-java skill-icon" aria-hidden="true"></i>
-                <h3>Java</h3>
-                <div class="skill-desc">
-                    <p>Familiar with Java fundamentals — OOP, data structures, and algorithms applied in academic and personal projects.</p>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <i class="fa-solid fa-code skill-icon" aria-hidden="true"></i>
-                <h3>C++</h3>
-                <div class="skill-desc">
-                    <p>Knowledgeable in C++ covering variables, loops, functions, and memory management for problem-solving and coursework.</p>
-                </div>
-            </div>
-
-            <div class="skill-box">
-                <i class="fa-solid fa-database skill-icon" aria-hidden="true"></i>
-                <h3>MongoDB</h3>
-                <div class="skill-desc">
-                    <p>Basic experience with MongoDB for NoSQL data storage, document-based modeling, and CRUD operations.</p>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===== TOOLS & LANGUAGES ===== -->
-    <section class="tools-langs" id="tools">
-
-        <div class="section-header">
-            <p>My Arsenal</p>
-            <h2 class="section-title">Tools &amp; <strong>Languages</strong></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="tools-langs-wrapper">
-
-            <!-- Languages Column -->
-            <div class="tl-column">
-                <div class="tl-column-label">
-                    <i class="bx bx-code-alt" aria-hidden="true"></i>
-                    Languages
-                </div>
-                <div class="tl-grid">
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon html-color">
-                            <i class="fa-brands fa-html5" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>HTML5</h4>
-                            <span>Markup</span>
-                        </div>
-                        <div class="tl-badge">Advanced</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon css-color">
-                            <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>CSS3</h4>
-                            <span>Styling</span>
-                        </div>
-                        <div class="tl-badge">Advanced</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon js-color">
-                            <i class="fa-brands fa-js" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>JavaScript</h4>
-                            <span>Scripting</span>
-                        </div>
-                        <div class="tl-badge">Intermediate</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon python-color">
-                            <i class="fa-brands fa-python" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>Python</h4>
-                            <span>General Purpose</span>
-                        </div>
-                        <div class="tl-badge">Intermediate</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon java-color">
-                            <i class="fa-brands fa-java" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>Java</h4>
-                            <span>OOP / Backend</span>
-                        </div>
-                        <div class="tl-badge">Intermediate</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon csharp-color">
-                            <i class="fa-solid fa-hashtag" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>C#</h4>
-                            <span>OOP / .NET</span>
-                        </div>
-                        <div class="tl-badge">Beginner</div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Tools Column -->
-            <div class="tl-column">
-                <div class="tl-column-label">
-                    <i class="bx bx-wrench" aria-hidden="true"></i>
-                    Dev Tools
-                </div>
-                <div class="tl-grid">
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon vscode-color">
-                            <i class="bx bxl-visual-studio" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>VS Code</h4>
-                            <span>Code Editor</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Primary</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon intellij-color">
-                            <i class="fa-solid fa-brain" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>IntelliJ IDEA</h4>
-                            <span>IDE</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Java / Kotlin</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon git-color">
-                            <i class="fa-brands fa-git-alt" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>Git</h4>
-                            <span>Version Control</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Regular</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon github-color">
-                            <i class="fa-brands fa-github" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>GitHub</h4>
-                            <span>Repository</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Regular</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon figma-color">
-                            <i class="fa-brands fa-figma" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>Figma</h4>
-                            <span>UI Design</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Design</div>
-                    </div>
-
-                    <div class="tl-card">
-                        <div class="tl-card-icon node-color">
-                            <i class="fa-brands fa-node-js" aria-hidden="true"></i>
-                        </div>
-                        <div class="tl-card-info">
-                            <h4>Node.js</h4>
-                            <span>Runtime</span>
-                        </div>
-                        <div class="tl-badge tl-badge--tool">Backend</div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===== EDUCATION ===== -->
-    <section class="education" id="education">
-
-        <div class="section-header">
-            <p>Background</p>
-            <h2 class="section-title">My <strong>Education</strong></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="education-container">
-
-            <div class="edu-block">
-                <div class="edu-block-label">
-                    <i class="bx bxs-graduation" aria-hidden="true"></i>
-                    Academic
-                </div>
-
-                <div class="edu-timeline">
-
-                    <article class="edu-card">
-                        <div class="edu-card-year">2020 — Present</div>
-                        <div class="edu-card-body">
-                            <h3>Bachelor of Science in Information Technology</h3>
-                            <span class="edu-school">
-                                <i class="bx bx-buildings" aria-hidden="true"></i>
-                                Cebu Technological University — Ginatilan Extension
-                            </span>
-                            <div class="edu-badges">
-                                <span class="badge badge-gold">In Progress</span>
-                                <span class="badge">BSIT</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="edu-card">
-                        <div class="edu-card-year">2018 — 2020</div>
-                        <div class="edu-card-body">
-                            <h3>Senior High School — GAS Strand</h3>
-                            <span class="edu-school">
-                                <i class="bx bx-buildings" aria-hidden="true"></i>
-                                Sorsogon National High School
-                            </span>
-                            <div class="edu-badges">
-                                <span class="badge">GAS Strand</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-
-            <div class="edu-block">
-                <div class="edu-block-label">
-                    <i class="bx bx-certification" aria-hidden="true"></i>
-                    Certifications
-                </div>
-
-                <div class="certs-grid">
-
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="bx bxl-meta" aria-hidden="true"></i></div>
-                        <div class="cert-info">
-                            <h4>Meta Front-End Developer</h4>
-                            <span>Coursera · 2024</span>
-                        </div>
-                        <a href="#" class="cert-link" aria-label="View Meta Front-End Developer certificate">
-                            <i class="bx bx-link-external" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="bx bxl-javascript" aria-hidden="true"></i></div>
-                        <div class="cert-info">
-                            <h4>JavaScript Algorithms &amp; Data Structures</h4>
-                            <span>freeCodeCamp · 2023</span>
-                        </div>
-                        <a href="#" class="cert-link" aria-label="View JavaScript certificate">
-                            <i class="bx bx-link-external" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="bx bxl-react" aria-hidden="true"></i></div>
-                        <div class="cert-info">
-                            <h4>React — The Complete Guide</h4>
-                            <span>Udemy · 2023</span>
-                        </div>
-                        <a href="#" class="cert-link" aria-label="View React certificate">
-                            <i class="bx bx-link-external" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-                    <div class="cert-card">
-                        <div class="cert-icon"><i class="bx bx-palette" aria-hidden="true"></i></div>
-                        <div class="cert-info">
-                            <h4>Responsive Web Design</h4>
-                            <span>freeCodeCamp · 2022</span>
-                        </div>
-                        <a href="#" class="cert-link" aria-label="View Responsive Web Design certificate">
-                            <i class="bx bx-link-external" aria-hidden="true"></i>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contacts">
-
-        <div class="section-header">
-            <p>Get In Touch</p>
-            <h2 class="section-title">Contact <strong>Me</strong></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <div class="contact-container">
-
-            <div class="contact-left">
-                <div class="contact-details">
-
-                    <a href="mailto:quinanolarichitojr@gmail.com" class="contact-item">
-                        <div class="contact-item-icon"><i class="bx bx-envelope" aria-hidden="true"></i></div>
-                        <div>
-                            <span class="contact-item-label">Email</span>
-                            <span class="contact-item-value">quinanolarichitojr@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <a href="tel:+639608214220" class="contact-item">
-                        <div class="contact-item-icon"><i class="bx bx-phone" aria-hidden="true"></i></div>
-                        <div>
-                            <span class="contact-item-label">Phone</span>
-                            <span class="contact-item-value">+63 960 821 4220</span>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <form class="contact-form" id="contactForm" novalidate>
-                <p class="contact-intro">
-                    I'm currently open to freelance projects and full-time opportunities.
-                    Feel free to reach out — I'll get back to you within 24 hours.
+    <main>
+
+        <!-- ===== HOME / HERO ===== -->
+        <section class="home" id="home">
+            <div class="home-content">
+                <p class="home-kicker">Cebu, Philippines</p>
+                <h1>Chito-san — <em>Frontend Developer &amp; BSIT Student</em></h1>
+                <p class="home-lede">
+                    I build clean, functional interfaces — from responsive websites to
+                    embedded systems paired with live web dashboards. Currently studying
+                    Information Technology at Cebu Technological University, Ginatilan
+                    Extension Campus.
                 </p>
 
-                <div class="form-row">
+                <div class="home-actions">
+                    <a href="#contact" class="btn">Contact me</a>
+                    <a href="https://github.com/Webyss12" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.instagram.com/yab0ywill/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </div>
+            </div>
+
+            <div class="home-image">
+                <img src="./img/prof_.jpg" alt="Chito, portfolio profile photo" loading="eager" width="320" height="320">
+            </div>
+        </section>
+
+        <!-- ===== SELECTED WORK ===== -->
+        <section class="work" id="work">
+            <h2 class="section-title">Selected work</h2>
+
+            <ul class="project-list">
+
+                <li class="project">
+                    <div class="project-head">
+                        <h3>Basketball Scoreboard</h3>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p>An ESP32-based scoreboard system driving TM1637 and MAX7219
+                        displays, synced live over Firebase and operated from a
+                        dark-themed web controller built for quick, low-misclick input.</p>
+                    <ul class="project-tags">
+                        <li>ESP32</li>
+                        <li>Arduino C++</li>
+                        <li>Firebase RTDB</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <a href="https://github.com/Webyss12" target="_blank" rel="noopener noreferrer" class="project-link">Repository</a>
+                </li>
+
+                <li class="project">
+                    <div class="project-head">
+                        <h3>SmartLED IoT Controller</h3>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p>A Wi-Fi connected LED controller with PWM brightness control and
+                        a dashboard served directly from the ESP32's own web server,
+                        reachable locally at smartled.local and synced through Firebase.</p>
+                    <ul class="project-tags">
+                        <li>ESP32</li>
+                        <li>Firebase RTDB</li>
+                        <li>HTML / CSS / JS</li>
+                        <li>mDNS</li>
+                    </ul>
+                    <a href="https://github.com/Webyss12" target="_blank" rel="noopener noreferrer" class="project-link">Repository</a>
+                </li>
+
+                <li class="project">
+                    <div class="project-head">
+                        <h3>Waterworks Consumption Report</h3>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p>SQL reporting tooling built against a Django-managed MySQL
+                        database, extracting and summarizing water consumption data
+                        for a local waterworks system.</p>
+                    <ul class="project-tags">
+                        <li>MySQL</li>
+                        <li>Django</li>
+                        <li>SQL</li>
+                    </ul>
+                    <a href="https://github.com/Webyss12" target="_blank" rel="noopener noreferrer" class="project-link">Repository</a>
+                </li>
+
+            </ul>
+        </section>
+
+        <!-- ===== TECHNICAL STACK ===== -->
+        <section class="stack" id="stack">
+            <h2 class="section-title">Technical stack</h2>
+
+            <div class="stack-grid">
+                <div class="stack-group">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C#</li>
+                        <li>C++ (Arduino)</li>
+                    </ul>
+                </div>
+
+                <div class="stack-group">
+                    <h3>Frameworks &amp; tools</h3>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>Git &amp; GitHub</li>
+                        <li>Firebase</li>
+                        <li>MySQL</li>
+                        <li>VS Code</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPERIENCE & EDUCATION ===== -->
+        <section class="education" id="education">
+            <h2 class="section-title">Experience &amp; education</h2>
+
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Year</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Organization / Issuer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2020 — Present</td>
+                        <td>BS in Information Technology</td>
+                        <td>Cebu Technological University — Ginatilan Extension</td>
+                    </tr>
+                    <tr>
+                        <td>2018 — 2020</td>
+                        <td>Senior High School, GAS Strand</td>
+                        <td>Sorsogon National High School</td>
+                    </tr>
+                    <tr>
+                        <td>2024</td>
+                        <td>Meta Front-End Developer</td>
+                        <td>Coursera</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>JavaScript Algorithms &amp; Data Structures</td>
+                        <td>freeCodeCamp</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>React — The Complete Guide</td>
+                        <td>Udemy</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>Responsive Web Design</td>
+                        <td>freeCodeCamp</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="contact" id="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>
+                        Open to freelance projects and full-time opportunities.
+                        Feel free to reach out — I'll get back to you within 24 hours.
+                    </p>
+                    <a href="mailto:quinanolarichitojr@gmail.com" class="contact-email">quinanolarichitojr@gmail.com</a>
+                </div>
+
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
-                        <label for="name">Full Name</label>
+                        <label for="name">Name</label>
                         <input type="text" id="name" name="name" placeholder="John Doe" required autocomplete="name" />
                     </div>
+
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Project inquiry..." required />
-                </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="7" placeholder="Tell me about your project..." required></textarea>
-                </div>
+                    <div class="form-status" id="formStatus" aria-live="polite"></div>
 
-                <!-- Form status message -->
-                <div class="form-status" id="formStatus" aria-live="polite"></div>
+                    <button type="submit" class="btn btn-full" id="submitBtn">Send message</button>
+                </form>
+            </div>
+        </section>
 
-                <button type="submit" class="btn btn-full" id="submitBtn">
-                    <i class="bx bx-send" aria-hidden="true"></i>
-                    Send Message
-                </button>
-            </form>
-
-        </div>
-
-    </section>
+    </main>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <p>© <span id="year"></span> Chito-san. All rights reserved.</p>
-        <span>Lets build something amazing together!</span>
+        <p>© <span id="year"></span> Chito-san</p>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="bx bx-chevron-up" aria-hidden="true"></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
     </button>
 
-    <!-- ===== SCRIPTS ===== -->
     <script src="script.js"></script>
-    <script src="spider.js"></script>
 </body>
 </html>
